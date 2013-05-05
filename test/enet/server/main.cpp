@@ -53,7 +53,7 @@ int main(int argc, char* argv[])
 					clientname,
 					event.peer -> address.port);
 			/* Store any relevant client information here. */
-			event.peer -> data = "Client information";
+			event.peer -> data = (void*)"Client information";
 			if (numpeers<2)
 			{
 				clientAddresses[numpeers] = event.peer->address;
