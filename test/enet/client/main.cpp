@@ -53,7 +53,7 @@ int main(int argc, char* argv[])
 	ENetPeer* natpeer=0;
 
 	/* Connect to some.server.net:1234. */
-	enet_address_set_host (& dedicatedserveraddress, "localhost");
+	enet_address_set_host (& dedicatedserveraddress, "bulletphysics.org");
 	dedicatedserveraddress.port = 1234;
 	/* Initiate the connection, allocating the two channels 0 and 1. */
 	dedicatedpeer = enet_host_connect (client, & dedicatedserveraddress, 2, 0);    
@@ -78,7 +78,9 @@ int main(int argc, char* argv[])
 		/* Wait up to 1000 milliseconds for an event. */
 		while (enet_host_service (client, & event, 1000000000) > 0)
 		{
-			if (natpeer)
+			static int count=10;
+			count--;
+			if (natpeer && count>0)
 			{
 					/* Create a reliable packet of size 7 containing "packet\0" */
 					ENetPacket * packet = enet_packet_create ("packet", 
